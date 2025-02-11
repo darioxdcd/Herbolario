@@ -2,6 +2,7 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaRegistroProductos extends JFrame {
@@ -119,7 +120,29 @@ public class VentanaRegistroProductos extends JFrame {
 
         //Ahora le damos las funcionalidades
 
-        
+        aceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(productoJComboBox.getSelectedIndex()== 0){
+                    JOptionPane.showMessageDialog(null, "No ha elegido ningun producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+                }
+                else{
+                Producto productop = (Producto) productoJComboBox.getSelectedItem();
+
+
+                int numeroSeleccionado = (Integer) cantidadJComboBox.getSelectedItem();
+                float operacion = productop.getPrecio()*numeroSeleccionado;
+                DatosPrecargados.setOperacion(operacion);
+                DatosPrecargados.setTotalfinal(operacion++);
+                String texto = String.valueOf(DatosPrecargados.getTotalfinal());
+                total2.setText(texto);
+
+                String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion());
+                resumen.append(seleccion + "\n");
+                }
+            }
+        });
 
 
 

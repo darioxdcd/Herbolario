@@ -46,6 +46,9 @@ public class Producto
     public Producto (String nombre){
         this.nombre=nombre;
     }
+    public Producto (int cantidad){
+        this.cantidad = cantidad;
+    }
 
 
 
