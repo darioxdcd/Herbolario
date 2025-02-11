@@ -17,7 +17,7 @@ public class VentanaEstadisticas extends JFrame{
 	
 	public VentanaEstadisticas() {
 		
-		setSize(1280,720);
+		setSize(700,700);
 		setLayout(new BorderLayout());
 		
 		//panel que muestra el mensaje estadistica
@@ -39,7 +39,7 @@ public class VentanaEstadisticas extends JFrame{
 		estadisticas.setLayout(new GridBagLayout());
 		
 		GridBagConstraints constraint = new  GridBagConstraints();
-		constraint.insets = new Insets(30, 250, 400, 300);
+		constraint.insets = new Insets(30, 200, 400, 200);
 		
 		
 		Font font3 = new Font("Arial", Font.PLAIN, 30);
