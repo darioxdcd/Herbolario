@@ -1,6 +1,7 @@
 package org.example;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -17,13 +18,21 @@ public class VentanaEstadisticas extends JFrame{
 	
 	public VentanaEstadisticas() {
 		
-		setSize(700,700);
+		setSize(900,900);
 		setLayout(new BorderLayout());
+		
+		Color verde = new Color(90,202,30);
+		
+		JPanel panel = new JPanel();
+		add(panel);
+		panel.setLayout(new BorderLayout());
+		
 		
 		//panel que muestra el mensaje estadistica
 		
 		JPanel menu = new JPanel();
-		add(menu,BorderLayout.NORTH);
+		panel.add(menu,BorderLayout.NORTH);
+		menu.setBackground(verde);
 
 		
 		Font font = new Font("Arial", Font.PLAIN, 50);
@@ -35,11 +44,12 @@ public class VentanaEstadisticas extends JFrame{
 		//panel que muestra las estadisticas
 		
 		JPanel estadisticas = new JPanel();
-		add(estadisticas,BorderLayout.CENTER);
+		panel.add(estadisticas,BorderLayout.CENTER);
 		estadisticas.setLayout(new GridBagLayout());
+		estadisticas.setBackground(verde);
 		
 		GridBagConstraints constraint = new  GridBagConstraints();
-		constraint.insets = new Insets(30, 200, 400, 200);
+		constraint.insets = new Insets(30, 200, 600, 200);
 		
 		
 		Font font3 = new Font("Arial", Font.PLAIN, 30);
@@ -70,7 +80,8 @@ public class VentanaEstadisticas extends JFrame{
 		//panel botones
 		JPanel botones = new JPanel();
 		botones.setLayout(new GridBagLayout());
-		add(botones,BorderLayout.SOUTH);
+		panel.add(botones,BorderLayout.SOUTH);
+		botones.setBackground(verde);
 		
 		constraint.insets = new Insets(30, 50, 10, 50);
 		
