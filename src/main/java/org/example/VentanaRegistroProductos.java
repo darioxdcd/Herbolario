@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static org.example.DatosPrecargados.operacion;
+
 public class VentanaRegistroProductos extends JFrame {
 
     public VentanaRegistroProductos(){
@@ -128,13 +130,14 @@ public class VentanaRegistroProductos extends JFrame {
 
                 }
                 else{
+                DatosPrecargados.getTotalfinal();
                 Producto productop = (Producto) productoJComboBox.getSelectedItem();
 
 
                 int numeroSeleccionado = (Integer) cantidadJComboBox.getSelectedItem();
                 float operacion = productop.getPrecio()*numeroSeleccionado;
                 DatosPrecargados.setOperacion(operacion);
-                DatosPrecargados.setTotalfinal(operacion++);
+                DatosPrecargados.setTotalfinal(DatosPrecargados.getOperacion()+DatosPrecargados.getTotalfinal());
                 String texto = String.valueOf(DatosPrecargados.getTotalfinal());
                 total2.setText(texto);
 
