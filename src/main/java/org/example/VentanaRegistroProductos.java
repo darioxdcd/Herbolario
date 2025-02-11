@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,7 @@ public class VentanaRegistroProductos extends JFrame {
     public VentanaRegistroProductos(){
         //Creamos la ventana y establecemos el Layout
         setSize(900,900);
-        //setResizable(false);
+        setResizable(false);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
@@ -20,7 +21,8 @@ public class VentanaRegistroProductos extends JFrame {
         gbc.insets = new Insets (10,10,10,10);
         gbc.fill = GridBagConstraints.BOTH;
         //Creamos la fuente
-        Font font = new Font("Calibri",Font.PLAIN,50);
+        Font fonttitulo = new Font("Calibri",Font.PLAIN,50);
+        Font fontresumen = new Font("Calibri",Font.BOLD,16);
         //Creamos los elementos
         JLabel titulo = new JLabel("Añadir registros");
         JLabel producto = new JLabel ("Producto: ");
@@ -36,7 +38,7 @@ public class VentanaRegistroProductos extends JFrame {
         for (int i =1;i<=10;i++){
             cantidadJComboBox.addItem(i);
         }
-        cantidadJComboBox.setPreferredSize(new Dimension(202,25));
+
 
 
         JButton aceptar = new JButton("Aceptar");
@@ -44,13 +46,14 @@ public class VentanaRegistroProductos extends JFrame {
 
         JButton imagen = new JButton("Imagen");
         JTextArea resumen = new JTextArea(20,40);
+        resumen.setFont(fontresumen);
         resumen.setEditable(false);
 
         JLabel total1 = new JLabel("TOTAL: ");
-        JLabel total2 = new JLabel(" ");
+        JLabel total2 = new JLabel("0");
 
         JButton estadistica = new JButton("Estadistica");
-        titulo.setFont(font);
+        titulo.setFont(fonttitulo);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         //Ahora los colocamos
@@ -125,6 +128,7 @@ public class VentanaRegistroProductos extends JFrame {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if(productoJComboBox.getSelectedIndex()== 0){
                     JOptionPane.showMessageDialog(null, "No ha elegido ningun producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
@@ -143,6 +147,31 @@ public class VentanaRegistroProductos extends JFrame {
 
                 String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion());
                 resumen.append(seleccion + "\n");
+
+                productoJComboBox.setSelectedIndex(0);
+                cantidadJComboBox.setSelectedIndex(0);
+                }
+            }
+        });
+        borrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (resumen.getText().trim().isEmpty()) { // Verifica si está vacío (sin espacios en blanco)
+                    JOptionPane.showMessageDialog(null, "No hay nada que borrar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+                }
+                else{
+
+                    int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres borrar todo?","Advertencia",JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION){
+                            DatosPrecargados.setTotalfinal(0);
+                            DatosPrecargados.setOperacion(0);
+                            resumen.setText(null);
+                            total2.setText("0");
+
+                        }
+
+
                 }
             }
         });
