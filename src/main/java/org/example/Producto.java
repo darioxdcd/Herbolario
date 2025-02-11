@@ -4,6 +4,16 @@ package org.example;
 public class Producto
 {
     float precio;
+    String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     int cantidad;
 
     public float getPrecio() {
@@ -22,8 +32,18 @@ public class Producto
         this.cantidad = cantidad;
     }
 
-    public Producto(float precio, int cantidad){
+    public Producto(String nombre, float precio, int cantidad){
+        this.nombre = nombre;
         this.precio = precio;
         this.cantidad=cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    public Producto(){
+
     }
 }

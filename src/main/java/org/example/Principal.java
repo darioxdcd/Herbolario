@@ -2,6 +2,6 @@ package org.example;
 
 public class Principal {
     public static void main(String[] args) {
-        VentanaInicio ventanaInicio = new VentanaInicio();
+        VentanaRegistroProductos ventanaInicio = new VentanaRegistroProductos();
     }
 }
