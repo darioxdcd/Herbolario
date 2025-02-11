@@ -32,16 +32,30 @@ public class Producto
         this.cantidad = cantidad;
     }
 
-    public Producto(String nombre, float precio, int cantidad){
+
+
+    public Producto(String nombre, float precio){
         this.nombre = nombre;
         this.precio = precio;
+    }
+    public Producto (String nombre, float precio, int cantidad){
+        this.nombre=nombre;
+        this.precio=precio;
         this.cantidad=cantidad;
     }
+    public Producto (String nombre){
+        this.nombre=nombre;
+    }
+
+
 
     @Override
     public String toString() {
         return nombre;
     }
+
+
+
 
     public Producto(){
 
