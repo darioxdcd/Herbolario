@@ -1,6 +1,8 @@
 package org.example;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Inicio extends JFrame {
 	
@@ -11,6 +13,7 @@ public class Inicio extends JFrame {
         setSize(900, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
         getContentPane().setBackground(new Color(90, 202, 30)); //Color de fondo verde
         
         //separacion entre botones
@@ -38,6 +41,22 @@ public class Inicio extends JFrame {
         semanaAnterior.setFont(new Font("Serif", Font.BOLD, 24));
         gbc.gridy = 2;
         add(semanaAnterior, gbc);
+
+        nuevaSemana.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaRegistroProductos registroProductos = new VentanaRegistroProductos();
+                dispose();
+            }
+
+        });
+
+        semanaAnterior.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         
         
         setVisible(true);

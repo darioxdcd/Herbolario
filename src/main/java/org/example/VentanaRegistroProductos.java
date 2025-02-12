@@ -11,7 +11,8 @@ public class VentanaRegistroProductos extends JFrame {
     public VentanaRegistroProductos(){
         //Creamos la ventana y establecemos el Layout
         setSize(900,900);
-        setResizable(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
@@ -257,6 +258,13 @@ public class VentanaRegistroProductos extends JFrame {
 
 
                 }
+            }
+        });
+
+        estadistica.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
             }
         });
 
