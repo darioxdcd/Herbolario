@@ -139,7 +139,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
     public void leer_fichero() {
     	
     	 try {
-             BufferedReader br = new BufferedReader(new FileReader("estadisticas.txt"));
+             BufferedReader br = new BufferedReader(new FileReader("estadisticasPrecargadas.txt"));
              String line;
              int i = 0;
              

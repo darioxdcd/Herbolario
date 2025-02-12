@@ -8,6 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,83 +18,74 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class VentanaEstadisticas extends JFrame {
-    
-    public VentanaEstadisticas() {
-        
-        setSize(900, 900);
-        setLayout(new BorderLayout());
-        setLocationRelativeTo(null);
-        
-        Color verde = new Color(90, 202, 30);
-        
-        JPanel panel = new JPanel();
-        add(panel);
-        panel.setLayout(new BorderLayout());
-        
-        
-        // Panel que muestra el mensaje de estadística
-        JPanel menu = new JPanel();
-        panel.add(menu, BorderLayout.NORTH);
-        menu.setBackground(verde);
+	 String[] productos = new String[6];
+	 int[] cantidades = new int[6];
+	 int[] precios = new int[6];
+	    
+	 public VentanaEstadisticas() {
+	        
+	        setSize(900, 900);
+	        setLocationRelativeTo(null);
+	        setLayout(new BorderLayout());
+	        
+	        Color verde = new Color(90, 202, 30);
+	        
+	        JPanel panel = new JPanel();
+	        add(panel);
+	        panel.setLayout(new BorderLayout());
+	         
+	        
+	        leer_fichero();
+	        
+	       
+	        // Calcular total
+	        int total = 0;
+	        for (int i = 0; i < cantidades.length; i++) {
+	            total += cantidades[i] * precios[i];
+	        }
+	        
+	        // Calcular porcentajes
+	        double[] porcentajes = new double[cantidades.length];
+	        for (int i = 0; i < cantidades.length; i++) {
+	            porcentajes[i] = ((cantidades[i] * precios[i]) / (double) total) * 100;
+	        }
 
-        Font font = new Font("Arial", Font.PLAIN, 50);
+	        // Panel que muestra el mensaje de estadística
+	        JPanel menu = new JPanel();
+	        panel.add(menu, BorderLayout.NORTH);
+	        menu.setBackground(verde);
 
-        JLabel esta = new JLabel("Estadistica");
-        esta.setFont(font);
-        menu.add(esta);
-        
-        // Panel que muestra las estadísticas
-        JPanel estadisticas = new JPanel();
-        panel.add(estadisticas, BorderLayout.CENTER);
-        estadisticas.setLayout(new GridBagLayout());
-        estadisticas.setBackground(verde);
-        
-        GridBagConstraints constraint = new GridBagConstraints();
-        constraint.insets = new Insets(0, 0, 80, 150);
-        
-        Font font3 = new Font("Arial", Font.PLAIN, 30);
-        
-        // Crear las etiquetas para las estadísticas
-        JLabel infusiones = new JLabel("Infusiones: ");
-        infusiones.setFont(font3);
-        constraint.gridx = 0;
-        constraint.gridy = 0;
-        constraint.gridwidth = 1;
-        constraint.gridheight = 1;
-        estadisticas.add(infusiones, constraint);
-        
-        JLabel aceites = new JLabel("Aceite esencial: ");
-        aceites.setFont(font3);
-        constraint.gridy = 1;
-        estadisticas.add(aceites, constraint);
-        
-        JLabel jabon = new JLabel("Jabon artesanal: ");
-        jabon.setFont(font3);
-        constraint.gridy = 2;
-        estadisticas.add(jabon, constraint);
-        
-        JLabel cremas = new JLabel("Cremas y ungüentos naturales: ");
-        cremas.setFont(font3);
-        constraint.gridy = 3;
-        estadisticas.add(cremas, constraint);
-        
-        JLabel complementos = new JLabel("Complementos alimenticios: ");
-        complementos.setFont(font3);
-        constraint.gridy = 4;
-        estadisticas.add(complementos, constraint);
-        
-        JLabel miel = new JLabel("Miel natural: ");
-        miel.setFont(font3);
-        constraint.gridy = 5;
-        estadisticas.add(miel, constraint);
-        
-        // Etiqueta de porcentaje
-        JLabel porcentajes = new JLabel("%");
-        porcentajes.setFont(font3);
-        constraint.gridx = 1;  // Esta etiqueta se coloca en la columna 1
-        constraint.gridy = 0;  // Se alinea con la primera fila
-        estadisticas.add(porcentajes, constraint);
-        
+	        Font font = new Font("Arial", Font.PLAIN, 50);
+
+	        JLabel esta = new JLabel("Estadistica");
+	        esta.setFont(font);
+	        menu.add(esta);
+	        
+	        // Panel que muestra las estadísticas
+	        JPanel estadisticas = new JPanel();
+	        panel.add(estadisticas, BorderLayout.CENTER);
+	        estadisticas.setLayout(new GridBagLayout());
+	        estadisticas.setBackground(verde);
+	        
+	        GridBagConstraints constraint = new GridBagConstraints();
+	        constraint.insets = new Insets(0, 0, 80, 150);  
+	        
+	        Font font3 = new Font("Arial", Font.PLAIN, 30);
+	        
+	        // Crear las etiquetas para las estadísticas
+	        for (int i = 0; i < productos.length; i++) {
+	            JLabel label = new JLabel(productos[i] + ": ");
+	            label.setFont(font3);
+	            constraint.gridx = 0;
+	            constraint.gridy = i;
+	            estadisticas.add(label, constraint);
+
+	            JLabel porcentaje = new JLabel(String.format("%.2f%%", porcentajes[i]));
+	            porcentaje.setFont(font3);
+	            constraint.gridx = 1;
+	            estadisticas.add(porcentaje, constraint);
+	        }    
+    	
         // Panel de botones
         JPanel botones = new JPanel();
         botones.setLayout(new GridBagLayout());
@@ -144,5 +138,34 @@ public class VentanaEstadisticas extends JFrame {
     	
     	
     }
+    
+    
+    //leer estadisticas precargadas
+    
+    public void leer_fichero() {
+    	
+  		
+  			 try {  
+  	            BufferedReader br = new BufferedReader(new FileReader("estadisticas.txt"));
+  	            String line;
+  	            int i = 0;
+  	            
+  	            while ((line = br.readLine()) != null) {
+  	                String[] partes = line.split(",");
+  	                productos[i] = partes[0];
+  	                cantidades[i] = Integer.parseInt(partes[1]);
+  	                precios[i] = Integer.parseInt(partes[2]);
+  	                i++;
+  	            }
+  	            br.close();
+  	        } catch (IOException a) {
+  	            a.printStackTrace();
+  	        }
+  			
+
+   		 
+  
+   	
+   }
 }
 
