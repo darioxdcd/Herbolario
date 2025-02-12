@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 public class VentanaEstadisticasPrecargadas extends JFrame {
 	
@@ -24,6 +27,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
     public VentanaEstadisticasPrecargadas() {
         
         setSize(900, 900);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
         Color verde = new Color(90, 202, 30);
@@ -34,6 +38,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
 
         
         leer_fichero();
+       
         
        
         // Calcular total
@@ -101,7 +106,30 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         botones.add(inicio, constraint);
         inicio.setFont(font2);
         
+        inicio(inicio);
+        
         setVisible(true);
+    }
+    
+    //funcion para ir a la ventana de inicio
+    public void inicio(JButton boton) {
+    	
+    	 boton.addActionListener(new ActionListener(){ public void actionPerformed (){ 		
+ 	 		
+ 		}
+ 	@Override
+ 	public void actionPerformed(ActionEvent e) {
+ 		
+ 		if(boton == e.getSource()) {
+ 		
+ 			
+ 				Inicio inicio = new Inicio();	  	
+ 		
+ 	}
+ 	}
+ 	 });
+    	
+    	
     }
     
     

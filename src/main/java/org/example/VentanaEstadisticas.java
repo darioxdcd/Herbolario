@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ public class VentanaEstadisticas extends JFrame {
         
         setSize(900, 900);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
         
         Color verde = new Color(90, 202, 30);
         
@@ -115,7 +118,31 @@ public class VentanaEstadisticas extends JFrame {
         botones.add(inicio, constraint);
         inicio.setFont(font2);
         
+        inicio(inicio);
+        
         setVisible(true);
+    }
+    
+    
+    //funcion para ir a la ventana de inicio
+    public void inicio(JButton boton) {
+    	
+    	 boton.addActionListener(new ActionListener(){ public void actionPerformed (){ 		
+ 	 		
+ 		}
+ 	@Override
+ 	public void actionPerformed(ActionEvent e) {
+ 		
+ 		if(boton == e.getSource()) {
+ 		
+ 			
+ 				Inicio inicio = new Inicio();
+
+ 	}
+ 	}
+ 	 });
+    	
+    	
     }
 }
 
