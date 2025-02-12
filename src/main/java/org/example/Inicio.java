@@ -11,7 +11,6 @@ public class Inicio extends JFrame {
         setSize(900, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
         getContentPane().setBackground(new Color(90, 202, 30)); //Color de fondo verde
         
         //separacion entre botones
