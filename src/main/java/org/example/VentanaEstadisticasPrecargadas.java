@@ -94,15 +94,6 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         
         Font font2 = new Font("Arial", Font.PLAIN, 25);
         
-        // Botón Guardar
-        JButton guardar = new JButton("Guardar");
-        constraint.gridx = 0;
-        constraint.gridy = 0;
-        constraint.gridwidth = 1;
-        constraint.gridheight = 1;
-        botones.add(guardar, constraint);
-        guardar.setFont(font2);
-        
         // Botón Inicio
         JButton inicio = new JButton("Inicio");
         constraint.gridx = 1;
