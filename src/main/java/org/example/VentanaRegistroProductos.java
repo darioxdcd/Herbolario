@@ -2,7 +2,8 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class VentanaRegistroProductos extends JFrame {
@@ -38,14 +39,37 @@ public class VentanaRegistroProductos extends JFrame {
         }
 
 
+        ImageIcon imagen1 = new ImageIcon("images/1.png");
+        ImageIcon imagen2 = new ImageIcon("images/2.png");
+        ImageIcon imagen3 = new ImageIcon("images/3.png");
+        ImageIcon imagen4 = new ImageIcon("images/4.png");
+        ImageIcon imagen5 = new ImageIcon("images/5.png");
+        ImageIcon imagen6 = new ImageIcon("images/6.png");
+        ImageIcon imagen0 = new ImageIcon("images/0.png");
+
+
+
+
+
+
+
+
+
 
         JButton aceptar = new JButton("Aceptar");
         JButton borrar = new JButton ("Borrar");
 
-        JButton imagen = new JButton("Imagen");
+        JButton imagen = new JButton(imagen0);
+
+
+
+
         JTextArea resumen = new JTextArea(20,40);
         resumen.setFont(fontresumen);
         resumen.setEditable(false);
+
+
+
 
         JLabel total1 = new JLabel("TOTAL: ");
         total1.setFont(fonttotal);
@@ -199,6 +223,40 @@ public class VentanaRegistroProductos extends JFrame {
                     }
 
 
+            }
+        });
+        productoJComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (productoJComboBox.getSelectedIndex()<=6){
+
+                    switch (productoJComboBox.getSelectedIndex()){
+                        case 1:
+                            imagen.setIcon(imagen1);
+
+                            break;
+                        case 2:
+                            imagen.setIcon(imagen2);
+                            break;
+                        case 3:
+                            imagen.setIcon(imagen3);
+                            break;
+                        case 4:
+                            imagen.setIcon(imagen4);
+                            break;
+                        case 5:
+                            imagen.setIcon(imagen5);
+                            break;
+                        case 6:
+                            imagen.setIcon(imagen6);
+                            break;
+                        default:
+                            imagen.setIcon(imagen0);
+                    }
+
+
+
+                }
             }
         });
 
