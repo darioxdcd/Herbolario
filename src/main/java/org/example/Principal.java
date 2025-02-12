@@ -22,5 +22,6 @@ public class Principal {
 
         VentanaRegistroProductos ventanaRegistroProductos = new VentanaRegistroProductos();
 
+
     }
 }

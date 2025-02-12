@@ -1,19 +1,16 @@
 package org.example;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static org.example.DatosPrecargados.operacion;
+
 
 public class VentanaRegistroProductos extends JFrame {
 
     public VentanaRegistroProductos(){
         //Creamos la ventana y establecemos el Layout
         setSize(900,900);
-        setResizable(false);
+        setResizable(true);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
@@ -23,6 +20,7 @@ public class VentanaRegistroProductos extends JFrame {
         //Creamos la fuente
         Font fonttitulo = new Font("Calibri",Font.PLAIN,50);
         Font fontresumen = new Font("Calibri",Font.BOLD,16);
+        Font fonttotal = new Font("Calibri",Font.BOLD,30);
         //Creamos los elementos
         JLabel titulo = new JLabel("Añadir registros");
         JLabel producto = new JLabel ("Producto: ");
@@ -50,9 +48,13 @@ public class VentanaRegistroProductos extends JFrame {
         resumen.setEditable(false);
 
         JLabel total1 = new JLabel("TOTAL: ");
-        JLabel total2 = new JLabel("0");
+        total1.setFont(fonttotal);
+
+        JLabel total2 = new JLabel("0 €");
+        total2.setFont(fonttotal);
 
         JButton estadistica = new JButton("Estadistica");
+        estadistica.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(fonttitulo);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -104,75 +106,99 @@ public class VentanaRegistroProductos extends JFrame {
         gbc.weightx=0;
 
         gbc.gridy=11;
-        gbc.gridx=0;
+        gbc.gridx=4;
         gbc.gridheight=2;
-        gbc.gridwidth=4;
+        gbc.gridwidth=1;
 
         add(total1,gbc);
 
-        gbc.gridwidth=2;
-        gbc.gridx=4;
+        gbc.gridwidth=1;
+        gbc.gridx=5;
 
         add(total2,gbc);
 
 
         gbc.gridheight=1;
-        gbc.gridwidth=4;
-        gbc.gridx=1;
+        gbc.gridwidth=6;
+        gbc.gridx=0;
         gbc.gridy=13;
 
         add(estadistica,gbc);
 
         //Ahora le damos las funcionalidades
 
-        aceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        aceptar.addActionListener(e -> {
 
-                if(productoJComboBox.getSelectedIndex()== 0){
-                    JOptionPane.showMessageDialog(null, "No ha elegido ningun producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            if(productoJComboBox.getSelectedIndex()== 0){
+                JOptionPane.showMessageDialog(null, "No ha elegido ningun producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
-                }
-                else{
-                DatosPrecargados.getTotalfinal();
-                Producto productop = (Producto) productoJComboBox.getSelectedItem();
+            }
+            else{
+
+            Producto productop = (Producto) productoJComboBox.getSelectedItem();
 
 
-                int numeroSeleccionado = (Integer) cantidadJComboBox.getSelectedItem();
-                float operacion = productop.getPrecio()*numeroSeleccionado;
-                DatosPrecargados.setOperacion(operacion);
-                DatosPrecargados.setTotalfinal(DatosPrecargados.getOperacion()+DatosPrecargados.getTotalfinal());
-                String texto = String.valueOf(DatosPrecargados.getTotalfinal());
-                total2.setText(texto);
-
-                String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion());
-                resumen.append(seleccion + "\n");
-
-                productoJComboBox.setSelectedIndex(0);
-                cantidadJComboBox.setSelectedIndex(0);
+            int numeroSeleccionado = (Integer) cantidadJComboBox.getSelectedItem();
+            float operacion = productop.getPrecio()*numeroSeleccionado;
+            DatosPrecargados.setOperacion(operacion);
+            DatosPrecargados.setTotalfinal(DatosPrecargados.getOperacion()+DatosPrecargados.getTotalfinal());
+            String texto = String.valueOf(DatosPrecargados.getTotalfinal());
+            total2.setText(texto+" €");
+            if(productoJComboBox.getSelectedIndex()>0&&productoJComboBox.getSelectedIndex()<=6){
+                switch (productoJComboBox.getSelectedIndex()){
+                    case 1:
+                        DatosPrecargados.setTotalop1(operacion+DatosPrecargados.getTotalop1());
+                        break;
+                    case 2:
+                        DatosPrecargados.setTotalop2(operacion+DatosPrecargados.getTotalop2());
+                        break;
+                    case 3:
+                        DatosPrecargados.setTotalop3(operacion+DatosPrecargados.getTotalop3());
+                        break;
+                    case 4:
+                        DatosPrecargados.setTotalop4(operacion+DatosPrecargados.getTotalop4());
+                        break;
+                    case 5:
+                        DatosPrecargados.setTotalop5(operacion+DatosPrecargados.getTotalop5());
+                        break;
+                    case 6:
+                        DatosPrecargados.setTotalop6(operacion+DatosPrecargados.getTotalop6());
+                        break;
                 }
             }
+
+
+            String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion()+" €");
+            resumen.append(seleccion + "\n");
+
+            productoJComboBox.setSelectedIndex(0);
+            cantidadJComboBox.setSelectedIndex(0);
+            }
         });
-        borrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (resumen.getText().trim().isEmpty()) { // Verifica si está vacío (sin espacios en blanco)
-                    JOptionPane.showMessageDialog(null, "No hay nada que borrar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        borrar.addActionListener(e -> {
+            if (resumen.getText().trim().isEmpty()) { // Verifica si está vacío (sin espacios en blanco)
+                JOptionPane.showMessageDialog(null, "No hay nada que borrar", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
-                }
-                else{
+            }
+            else{
 
-                    int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres borrar todo?","Advertencia",JOptionPane.YES_NO_OPTION);
-                        if (opcion == JOptionPane.YES_OPTION){
-                            DatosPrecargados.setTotalfinal(0);
-                            DatosPrecargados.setOperacion(0);
-                            resumen.setText(null);
-                            total2.setText("0");
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres borrar todo?","Advertencia",JOptionPane.YES_NO_OPTION);
+                    if (opcion == JOptionPane.YES_OPTION){
+                        DatosPrecargados.setTotalfinal(0);
+                        DatosPrecargados.setOperacion(0);
+                        resumen.setText(null);
+                        total2.setText("0 €");
+                        DatosPrecargados.setTotalop1(0);
+                        DatosPrecargados.setTotalop2(0);
+                        DatosPrecargados.setTotalop3(0);
+                        DatosPrecargados.setTotalop4(0);
+                        DatosPrecargados.setTotalop5(0);
+                        DatosPrecargados.setTotalop6(0);
 
-                        }
+
+                    }
 
 
-                }
             }
         });
 
