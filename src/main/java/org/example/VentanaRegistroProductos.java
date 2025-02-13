@@ -16,7 +16,7 @@ public class VentanaRegistroProductos extends JFrame {
 
     public VentanaRegistroProductos(){
         //Creamos la ventana y establecemos el Layout
-        setSize(700,700);
+        setSize(900,900);
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(new Color(90, 202, 30));

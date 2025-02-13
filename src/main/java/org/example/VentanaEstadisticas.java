@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class VentanaEstadisticas extends JFrame {
 	 String[] productos = new String[6];
 	 int[] cantidades = new int[6];
-	 int[] precios = new int[6];
+	 double[] precios = new double[6];
 	    
 	 public VentanaEstadisticas() {
 	        
@@ -72,19 +72,25 @@ public class VentanaEstadisticas extends JFrame {
 	        
 	        Font font3 = new Font("Arial", Font.PLAIN, 30);
 	        
-	        // Crear las etiquetas para las estadísticas
+	     // Crear las etiquetas para las estadísticas
 	        for (int i = 0; i < productos.length; i++) {
-	            JLabel label = new JLabel(productos[i] + ": ");
-	            label.setFont(font3);
-	            constraint.gridx = 0;
-	            constraint.gridy = i;
-	            estadisticas.add(label, constraint);
+	            // Verifica si el producto es null o vacío antes de agregar la etiqueta
+	            if (productos[i] != null && !productos[i].isEmpty()) {
+	                JLabel label = new JLabel(productos[i] + ": ");
+	                label.setFont(font3);
+	                constraint.gridx = 0;
+	                constraint.gridy = i;
+	                estadisticas.add(label, constraint);
 
-	            JLabel porcentaje = new JLabel(String.format("%.2f%%", porcentajes[i]));
-	            porcentaje.setFont(font3);
-	            constraint.gridx = 1;
-	            estadisticas.add(porcentaje, constraint);
-	        }    
+	                // Asegurarse de que el porcentaje no sea 0 o nulo
+	                if (cantidades[i] > 0 && precios[i] > 0) {
+	                    JLabel porcentaje = new JLabel(String.format("%.2f%%", porcentajes[i]));
+	                    porcentaje.setFont(font3);
+	                    constraint.gridx = 1;
+	                    estadisticas.add(porcentaje, constraint);
+	                }
+	            }
+	        }
     	
         // Panel de botones
         JPanel botones = new JPanel();
@@ -153,8 +159,8 @@ public class VentanaEstadisticas extends JFrame {
   	            while ((line = br.readLine()) != null) {
   	                String[] partes = line.split(",");
   	                productos[i] = partes[0];
-  	                cantidades[i] = Integer.parseInt(partes[1]);
-  	                precios[i] = Integer.parseInt(partes[2]);
+  	                cantidades[i] = Integer.parseInt(partes[1]);            
+  	                precios[i] = Double.parseDouble(partes[2]);
   	                i++;
   	            }
   	            br.close();
