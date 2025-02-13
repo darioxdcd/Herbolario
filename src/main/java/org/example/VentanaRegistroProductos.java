@@ -4,12 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 
 public class VentanaRegistroProductos extends JFrame {
@@ -215,8 +209,7 @@ public class VentanaRegistroProductos extends JFrame {
                         break;
                 }
             }
-
-            String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"----"+DatosPrecargados.getOperacion()+" €");
+                String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion()+" €");
             resumen.append(seleccion + "\n");
 
             productoJComboBox.setSelectedIndex(0);
@@ -299,12 +292,19 @@ public class VentanaRegistroProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
                      
           JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     	 
             	  
           VentanaEstadisticas ve = new VentanaEstadisticas();
              }
+
+                VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
+                dispose();
+                
+            }
+
         });
 
         producto.setFont(fontresumen);

@@ -123,7 +123,8 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
  		if(boton == e.getSource()) {
  		
  			
- 				Inicio inicio = new Inicio();	  	
+ 				Inicio inicio = new Inicio();
+                 dispose();
  		
  	}
  	}

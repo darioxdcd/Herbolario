@@ -55,7 +55,7 @@ public class Inicio extends JFrame {
         semanaAnterior.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	VentanaEstadisticasPrecargadas registroProductos = new VentanaEstadisticasPrecargadas();
+                VentanaEstadisticasPrecargadas ventanaEstadisticasPrecargadas = new VentanaEstadisticasPrecargadas();
                 dispose();
             }
         });

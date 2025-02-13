@@ -8,11 +8,12 @@ public class DatosPrecargados {
 
     public static float totalfinal;
     public static float operacion;
-    public static float totalop1;
-    public static float totalop2;
-    public static float totalop3;
-    public static float totalop4;
-    public static float totalop5;
+    public static float totalop1;//Total producto 1
+    public static float totalop2;//Total producto 2
+    public static float totalop3;//Total producto 3
+    public static float totalop4;//Total producto 4
+    public static float totalop5;//Total producto 5
+    public static float totalop6; //Total producto 6
 
     public static float getTotalop6() {
         return totalop6;
@@ -62,7 +63,7 @@ public class DatosPrecargados {
         DatosPrecargados.totalop5 = totalop5;
     }
 
-    public static float totalop6;
+
 
 
 
