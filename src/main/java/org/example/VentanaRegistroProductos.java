@@ -162,6 +162,22 @@ public class VentanaRegistroProductos extends JFrame {
         //Ahora le damos las funcionalidades
 
         aceptar.addActionListener(e -> {
+        	
+        	  Producto produc = (Producto) productoJComboBox.getSelectedItem();
+              int numeroSelec = (Integer) cantidadJComboBox.getSelectedItem();
+           
+
+              // Guardar en el archivo
+              try {
+                  FileWriter fileWriter = new FileWriter("estadisticas.txt", true); // 'true' para agregar al final del archivo
+                  BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                  String datos = produc.getNombre() + "," + numeroSelec + "," + produc.getPrecio() + "\n";
+                  bufferedWriter.write(datos);
+                  bufferedWriter.close();
+                  
+              } catch (IOException ex) {
+                  JOptionPane.showMessageDialog(null, "Error al guardar los datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+              }
 
             if(productoJComboBox.getSelectedIndex()== 0){
                 JOptionPane.showMessageDialog(null, "No ha elegido ningun producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -205,6 +221,10 @@ public class VentanaRegistroProductos extends JFrame {
 
             productoJComboBox.setSelectedIndex(0);
             cantidadJComboBox.setSelectedIndex(0);
+            
+            
+          
+
             }
         });
         borrar.addActionListener(e -> {
@@ -227,6 +247,19 @@ public class VentanaRegistroProductos extends JFrame {
                         DatosPrecargados.setTotalop5(0);
                         DatosPrecargados.setTotalop6(0);
                     }
+                    // Limpiar el archivo
+                    
+                    try {
+                        FileWriter fileWriter = new FileWriter("estadisticas.txt", false); 
+                        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                        bufferedWriter.close();
+                        
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al limpiar el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);   
+                    
+                    }     
+                    
+                    
             }
         });
         productoJComboBox.addActionListener(new ActionListener() {
@@ -265,75 +298,11 @@ public class VentanaRegistroProductos extends JFrame {
         estadistica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	
-            	//limpiar txt
-            	
-            	 try {
-            	       
-            	        FileWriter fileWriter = new FileWriter("estadisticas.txt", false); 
-            	        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            	        bufferedWriter.close(); 
-            	    } catch (IOException ex) {
-            	        JOptionPane.showMessageDialog(null, "Error al limpiar el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            	    }
-            	 
-            	 
-            	 
-            	  // guardar datos de los productos 
-            	
-        String contenidoResumen = resumen.getText();
 
-          if (contenidoResumen.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No hay nada que guardar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-          } else {
-              try {
-
-                FileWriter fileWriter = new FileWriter("estadisticas.txt", true); 
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-                         
-               String[] lineas = contenidoResumen.split("\n");
-
-                         
-              NumberFormat format = DecimalFormat.getInstance(Locale.getDefault()); 
-
-                         
-             for (String linea : lineas) {
-                        
-                   String[] partes = linea.split("----");
-                   if (partes.length == 3) {
-                               
-                       String nombre = partes[0].trim();
-                       String cantidad = partes[1].trim();
-                       String precioStr = partes[2].trim().replace(" €", "");
-
-                                
-                       precioStr = precioStr.replace(",", ".");
-
-                             
-                        double precio = 0.0;
-                        try {
-                                     
-                           precio = format.parse(precioStr).doubleValue();
-                         } catch (Exception ex) {
-                              JOptionPane.showMessageDialog(null, "Error al convertir el precio a número: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                              continue; 
-                            }
-
-                               
-                                 bufferedWriter.write(nombre + "," + cantidad + "," + precio);
-                                 bufferedWriter.newLine(); 
-                             }
-                         }
-
-                         bufferedWriter.close(); 
-
-                
-                     } catch (IOException ex) {
-                         JOptionPane.showMessageDialog(null, "Error al guardar el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                     }
-                 }
-          
+                     
+          JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    	 
+            	  
           VentanaEstadisticas ve = new VentanaEstadisticas();
              }
         });
@@ -352,7 +321,17 @@ public class VentanaRegistroProductos extends JFrame {
         imagen.setFocusPainted(false);
         resumen.setFocusable(false);
 
-
+        // Limpiar el archivo
+        
+        try {
+            FileWriter fileWriter = new FileWriter("estadisticas.txt", false); 
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.close();
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar el archivo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);   
+        
+        }  
 
         setVisible(true);
     }
