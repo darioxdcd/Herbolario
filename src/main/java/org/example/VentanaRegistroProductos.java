@@ -258,6 +258,8 @@ public class VentanaRegistroProductos extends JFrame {
         estadistica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
+                dispose();
                 
             }
         });
