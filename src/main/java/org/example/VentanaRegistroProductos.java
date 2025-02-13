@@ -252,6 +252,9 @@ public class VentanaRegistroProductos extends JFrame {
         });
 
 
+
+
+
         setVisible(true);
     }
 }
