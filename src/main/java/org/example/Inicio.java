@@ -55,7 +55,6 @@ public class Inicio extends JFrame {
         semanaAnterior.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
             }
         });
         nuevaSemana.setFont(fonttb);

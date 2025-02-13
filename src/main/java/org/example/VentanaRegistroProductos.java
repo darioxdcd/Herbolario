@@ -194,7 +194,6 @@ public class VentanaRegistroProductos extends JFrame {
                 }
             }
 
-            String seleccion =(productoJComboBox.getSelectedItem().toString()+"----"+cantidadJComboBox.getSelectedItem().toString()+"-----"+DatosPrecargados.getOperacion()+" €");
             resumen.append(seleccion + "\n");
 
             productoJComboBox.setSelectedIndex(0);
