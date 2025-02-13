@@ -64,7 +64,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         GridBagConstraints constraint = new GridBagConstraints();
         constraint.insets = new Insets(0, 10, 10, 150);  
 
-        JLabel esta = new JLabel("Estadistica");
+        JLabel esta = new JLabel("Estadisticas");
         esta.setFont(font);
         constraint.gridx = 1;
         constraint.gridy = 0;

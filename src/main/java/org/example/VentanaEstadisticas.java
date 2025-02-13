@@ -46,7 +46,7 @@ public class VentanaEstadisticas extends JFrame {
 
 	        Font font = new Font("Arial", Font.PLAIN, 50);
 
-	        JLabel esta = new JLabel("Estadistica");
+	        JLabel esta = new JLabel("Estadisticas");
 	        esta.setFont(font);
 	        
 	        constraint.gridx = 1;
