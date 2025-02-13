@@ -1,6 +1,0 @@
-Infusiones,0,10
-Aceites esenciales,0,15
-Jabones artesanales,0,8
-Cremas y ungüentos naturales,0,70
-Complementos alimenticios,0,20
-Miel natural,0,5
