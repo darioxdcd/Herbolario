@@ -50,6 +50,8 @@ public class VentanaRegistroProductos extends JFrame {
         Image fondo = new ImageIcon("images/fondo.png").getImage();
 
 
+
+
         JButton aceptar = new JButton("Aceptar");
         JButton borrar = new JButton("Borrar");
 
@@ -69,6 +71,14 @@ public class VentanaRegistroProductos extends JFrame {
 
         JButton estadistica = new JButton("Estadistica");
         estadistica.setHorizontalAlignment(SwingConstants.CENTER);
+
+        productoJComboBox.setFont(fontresumen);
+        cantidadJComboBox.setFont(fontresumen);
+        aceptar.setFont(fontresumen);
+        borrar.setFont(fontresumen);
+        estadistica.setFont(fontresumen);
+        cantidad.setFont(fontresumen);
+        producto.setFont(fontresumen);
         titulo.setFont(fonttitulo);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -248,6 +258,30 @@ public class VentanaRegistroProductos extends JFrame {
                     }
 
                 }
+            }
+        });
+
+        imagen.setFocusPainted(false);
+        imagen.setBorderPainted(false);
+        imagen.setContentAreaFilled(false);
+
+        resumen.setFocusable(false);
+        resumen.setBackground(new Color(90, 202, 30));
+
+        productoJComboBox.setFont(fontresumen);
+        cantidadJComboBox.setFont(fontresumen);
+        aceptar.setFont(fontresumen);
+        borrar.setFont(fontresumen);
+        estadistica.setFont(fontresumen);
+        cantidad.setFont(fontresumen);
+        producto.setFont(fontresumen);
+
+
+        estadistica.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
+                dispose();
             }
         });
 
