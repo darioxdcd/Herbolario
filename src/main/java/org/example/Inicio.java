@@ -15,6 +15,7 @@ public class Inicio extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(new Color(90, 202, 30)); //Color de fondo verde
+        Font fonttb = new Font("Calibri", Font.BOLD, 30);
         
         //separacion entre botones
         setLayout(new GridBagLayout());
@@ -23,7 +24,7 @@ public class Inicio extends JFrame {
         
         //titulo interfz y caracteristicas
         JLabel titulo = new JLabel("Registro de Herbolario", SwingConstants.CENTER);//posicion del centro
-        titulo.setFont(new Font("Serif", Font.BOLD, 48));//tipo de letra y tamaño
+        titulo.setFont(new Font("Calibri", Font.BOLD, 50));//tipo de letra y tamaño
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -57,6 +58,8 @@ public class Inicio extends JFrame {
 
             }
         });
+        nuevaSemana.setFont(fonttb);
+        semanaAnterior.setFont(fonttb);
         
         
         setVisible(true);
