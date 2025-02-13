@@ -5,13 +5,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +38,8 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         
         JPanel panel = new JPanel();
         add(panel);
-        panel.setLayout(new BorderLayout());
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(verde);
 
         
         leer_fichero();
@@ -53,57 +58,67 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
             porcentajes[i] = ((cantidades[i] * precios[i]) / (double) total) * 100;
         }
 
-        // Panel que muestra el mensaje de estadística
-        JPanel menu = new JPanel();
-        panel.add(menu, BorderLayout.NORTH);
-        menu.setBackground(verde);
 
         Font font = new Font("Arial", Font.PLAIN, 50);
-
-        JLabel esta = new JLabel("Estadistica");
-        esta.setFont(font);
-        menu.add(esta);
-        
-        // Panel que muestra las estadísticas
-        JPanel estadisticas = new JPanel();
-        panel.add(estadisticas, BorderLayout.CENTER);
-        estadisticas.setLayout(new GridBagLayout());
-        estadisticas.setBackground(verde);
         
         GridBagConstraints constraint = new GridBagConstraints();
-        constraint.insets = new Insets(0, 0, 80, 150);  
+        constraint.insets = new Insets(0, 10, 10, 150);  
+
+        JLabel esta = new JLabel("Estadisticas");
+        esta.setFont(font);
+        constraint.gridx = 1;
+        constraint.gridy = 0;
+        panel.add(esta,constraint);
         
-        Font font3 = new Font("Arial", Font.PLAIN, 30);
+        
+        Font font3 = new Font("Arial", Font.PLAIN, 20);
+        
+        ImageIcon[] imagenes = new ImageIcon[7];  
+
+        imagenes[0] = new ImageIcon("images/1.png");
+        imagenes[1] = new ImageIcon("images/2.png");
+        imagenes[2] = new ImageIcon("images/3.png");
+        imagenes[3] = new ImageIcon("images/4.png");
+        imagenes[4] = new ImageIcon("images/5.png");
+        imagenes[5] = new ImageIcon("images/6.png");
+        imagenes[6] = new ImageIcon("images/0.png");
         
         // Crear las etiquetas para las estadísticas
         for (int i = 0; i < productos.length; i++) {
+        	
+        	ImageIcon iherbolaria = imagenes[i];
+    		Image oherbolaria = iherbolaria.getImage();
+    		Image rherbolaria = oherbolaria.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+    		ImageIcon herbolaria = new ImageIcon(rherbolaria);
+        	
+        	JLabel label1 = new JLabel(herbolaria);
+            label1.setFont(font3);
+            constraint.gridx = 0;
+            constraint.gridy = i+1;
+            panel.add(label1, constraint);
+        	
             JLabel label = new JLabel(productos[i] + ": ");
             label.setFont(font3);
-            constraint.gridx = 0;
-            constraint.gridy = i;
-            estadisticas.add(label, constraint);
+            constraint.gridx = 1;
+            constraint.gridy = i+1;
+            panel.add(label, constraint);
 
             JLabel porcentaje = new JLabel(String.format("%.2f%%", porcentajes[i]));
             porcentaje.setFont(font3);
-            constraint.gridx = 1;
-            estadisticas.add(porcentaje, constraint);
+            constraint.gridx = 2;
+            constraint.gridy = i+1;
+            panel.add(porcentaje, constraint);
         }
         
-        // Panel de botones
-        JPanel botones = new JPanel();
-        botones.setLayout(new GridBagLayout());
-        panel.add(botones, BorderLayout.SOUTH);
-        botones.setBackground(verde);
-        
-        constraint.insets = new Insets(30, 50, 10, 50);
+
         
         Font font2 = new Font("Arial", Font.PLAIN, 25);
         
         // Botón Inicio
         JButton inicio = new JButton("Inicio");
         constraint.gridx = 1;
-        constraint.gridy = 0;
-        botones.add(inicio, constraint);
+        constraint.gridy = 7;
+        panel.add(inicio, constraint);
         inicio.setFont(font2);
         
         inicio(inicio);
