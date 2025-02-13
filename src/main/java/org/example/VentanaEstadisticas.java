@@ -54,7 +54,7 @@ public class VentanaEstadisticas extends JFrame {
 	        panel.add(esta,constraint);
 	        
 
-	        Font font3 = new Font("Arial", Font.PLAIN, 20);
+	        Font font3 = new Font("Calibri", Font.PLAIN, 20);
 	        
 	     // Primer Producto
 	        ImageIcon i1 = new ImageIcon("images/1.png");

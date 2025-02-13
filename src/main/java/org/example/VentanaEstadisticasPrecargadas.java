@@ -59,7 +59,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         }
 
 
-        Font font = new Font("Arial", Font.PLAIN, 50);
+        Font font = new Font("Calibri", Font.PLAIN, 50);
         
         GridBagConstraints constraint = new GridBagConstraints();
         constraint.insets = new Insets(0, 10, 10, 150);  
@@ -71,7 +71,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         panel.add(esta,constraint);
         
         
-        Font font3 = new Font("Arial", Font.PLAIN, 20);
+        Font font3 = new Font("Calibri", Font.PLAIN, 20);
         
         ImageIcon[] imagenes = new ImageIcon[7];  
 
@@ -112,7 +112,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         
 
         
-        Font font2 = new Font("Arial", Font.PLAIN, 25);
+        Font font2 = new Font("Calibri", Font.PLAIN, 25);
         
         // Botón Inicio
         JButton inicio = new JButton("Inicio");
