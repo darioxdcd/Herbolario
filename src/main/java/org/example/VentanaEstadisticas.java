@@ -137,6 +137,7 @@ public class VentanaEstadisticas extends JFrame {
  		
  			
  				Inicio inicio = new Inicio();
+				 dispose();
 
  	}
  	}
