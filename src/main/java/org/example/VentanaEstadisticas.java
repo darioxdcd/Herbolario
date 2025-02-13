@@ -55,7 +55,7 @@ public class VentanaEstadisticas extends JFrame {
 	        panel.add(menu, BorderLayout.NORTH);
 	        menu.setBackground(verde);
 
-	        Font font = new Font("Arial", Font.PLAIN, 50);
+	        Font font = new Font("Calibri", Font.PLAIN, 50);
 
 	        JLabel esta = new JLabel("Estadistica");
 	        esta.setFont(font);
