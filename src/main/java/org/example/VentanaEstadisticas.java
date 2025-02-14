@@ -10,7 +10,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -54,7 +56,7 @@ public class VentanaEstadisticas extends JFrame {
 	        panel.add(esta,constraint);
 	        
 
-	        Font font3 = new Font("Calibri", Font.PLAIN, 20);
+	        Font font3 = new Font("Arial", Font.PLAIN, 20);
 	        
 	     // Primer Producto
 	        ImageIcon i1 = new ImageIcon("images/1.png");
@@ -257,30 +259,6 @@ public class VentanaEstadisticas extends JFrame {
     }
     
     
-    //leer estadisticas precargadas
-    
-    public void leer_fichero() {
-    	
-  		
-  			 try {  
-  	            BufferedReader br = new BufferedReader(new FileReader("estadisticas.txt"));
-  	            String line;
-  	            int i = 0;
-  	            
-  	            while ((line = br.readLine()) != null) {
-  	                String[] partes = line.split(",");
-  	                productos[i] = partes[0];
-  	                cantidades[i] = Integer.parseInt(partes[1]);            
-  	                precios[i] = Double.parseDouble(partes[2]);
-  	                i++;
-  	            }
-  	            br.close();
-  	        } catch (IOException a) {
-  	            a.printStackTrace();
-  	        }
-   	
-   }
-    
     
     
     
@@ -294,14 +272,34 @@ public class VentanaEstadisticas extends JFrame {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(boton == e.getSource()) {
-		
-			JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);	
-				
+		if (boton == e.getSource()) {
+            // Datos que quieres guardar
+            String[] productos = {"Infusiones", "Aceites esenciales", "Jabones artesanales", 
+                                  "Cremas y ungüentos naturales", "Complementos alimenticios", "Miel natural"};
+            Float[] porcentajes = {
+                (DatosPrecargados.getTotalop1() / DatosPrecargados.getTotalfinal()) * 100,
+                (DatosPrecargados.getTotalop2() / DatosPrecargados.getTotalfinal()) * 100,
+                (DatosPrecargados.getTotalop3() / DatosPrecargados.getTotalfinal()) * 100,
+                (DatosPrecargados.getTotalop4() / DatosPrecargados.getTotalfinal()) * 100,
+                (DatosPrecargados.getTotalop5() / DatosPrecargados.getTotalfinal()) * 100,
+                (DatosPrecargados.getTotalop6() / DatosPrecargados.getTotalfinal()) * 100
+            };
 
-	}
-	}
-	 });
+            // Guardar en el archivo de texto
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("estadisticas.txt"))) {
+                for (int i = 0; i < productos.length; i++) {
+                  
+                    writer.write(productos[i] + ", " + String.format("%.2f", porcentajes[i]) + "%");
+                    writer.newLine(); 
+                }
+
+                JOptionPane.showMessageDialog(null, "Los datos han sido guardados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+});
   		
   			
 
