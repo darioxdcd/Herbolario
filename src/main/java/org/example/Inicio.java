@@ -47,6 +47,14 @@ public class Inicio extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VentanaRegistroProductos registroProductos = new VentanaRegistroProductos();
+                DatosPrecargados.setTotalop6(0);
+                DatosPrecargados.setTotalop5(0);
+                DatosPrecargados.setTotalop4(0);
+                DatosPrecargados.setTotalop3(0);
+                DatosPrecargados.setTotalop2(0);
+                DatosPrecargados.setTotalop1(0);
+                DatosPrecargados.setOperacion(0);
+                DatosPrecargados.setTotalfinal(0);
                 dispose();
             }
 

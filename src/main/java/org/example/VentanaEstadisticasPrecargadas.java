@@ -15,11 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class VentanaEstadisticasPrecargadas extends JFrame {
@@ -96,7 +92,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
             constraint.gridx = 0;
             constraint.gridy = i+1;
             panel.add(label1, constraint);
-        	
+
             JLabel label = new JLabel(productos[i] + ": ");
             label.setFont(font3);
             constraint.gridx = 1;
@@ -104,6 +100,7 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
             panel.add(label, constraint);
 
             JLabel porcentaje = new JLabel(String.format("%.2f%%", porcentajes[i]));
+            porcentaje.setHorizontalAlignment(SwingConstants.LEFT);
             porcentaje.setFont(font3);
             constraint.gridx = 2;
             constraint.gridy = i+1;
@@ -124,11 +121,12 @@ public class VentanaEstadisticasPrecargadas extends JFrame {
         inicio(inicio);
         
         setVisible(true);
+
     }
     
     //funcion para ir a la ventana de inicio
     public void inicio(JButton boton) {
-    	
+    	boton.setFont(new Font("Calibri", Font.PLAIN, 20));
     	 boton.addActionListener(new ActionListener(){ public void actionPerformed (){ 		
  	 		
  		}

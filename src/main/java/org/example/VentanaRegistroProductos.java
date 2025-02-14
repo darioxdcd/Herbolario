@@ -280,8 +280,13 @@ public class VentanaRegistroProductos extends JFrame {
         estadistica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
-                dispose();
+                if(resumen.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No hay nada para hacer la estadistica", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+                else{
+                    VentanaEstadisticas ventanaEstadisticas= new VentanaEstadisticas();
+                    dispose();
+                }
             }
         });
 
